@@ -1,0 +1,40 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "feedback-service.js",
+  "engines": {
+    "node": "12.18.3",
+    "npm": "7.9.0"
+  },
+  "scripts": {
+    "start": "node feedback-service.js",
+    "server": "nodemon feedback-service.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\"",
+    "webhook": "./sendgrid_webhook.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.12.9",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "path-parser": "^6.1.0",
+    "sendgrid": "^5.2.3",
+    "stripe": "^8.148.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "concurrently": "^6.1.0",
+    "dotenv": "^9.0.2",
+    "nodemon": "^2.0.7"
+  }
+}
