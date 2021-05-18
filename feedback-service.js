@@ -1,15 +1,17 @@
-require("./config/config");
-require("./db/mongoose");
+require("./config/config")
+require("./db/mongoose")
 
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
+const express = require("express")
+const cors = require("cors")
+const morgan = require("morgan")
+const passport = require('passport')
+const cookieSession = require('cookie-session')
 
-const Logger = require("./service/logger/winston");
+const Logger = require("./service/logger/winston")
 
-const Log = new Logger("app");
+const Log = new Logger("app")
 
-const app = express();
+const app = express()
 
 app.use(morgan("combined", { stream: Log.stream }));
 
@@ -19,6 +21,17 @@ app.use(cors());
 // Use the body-parser package in our application
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [process.env.SESSION_SECRET]
+  })
+);
+
+// Initializes passport and passport sessions
+app.use(passport.initialize());
+app.use(passport.session());
 
 //const MasterRouter = require("./routes/masters.route");
 //const RulesRouter = require("./routes/rules.route");

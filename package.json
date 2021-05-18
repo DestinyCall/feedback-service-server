@@ -20,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "app-root-path": "^3.0.0",
+    "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
