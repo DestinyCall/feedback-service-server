@@ -33,11 +33,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//const MasterRouter = require("./routes/masters.route");
-//const RulesRouter = require("./routes/rules.route");
+app.get('/', (req, res) => {
+  res.send('<h1>Home</h1>')
+});
 
-//app.use("/master", MasterRouter);
-//app.use("/rule", RulesRouter);
+//Import Route
+const api = require("./routes");
+app.use('/',api);
 
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
