@@ -1,17 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
-
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <header className="App-header">        
         <p>
           Hi
-        </p>        
-      </header>
-    </div>
-  );
+        </p>   
+        <a href="/auth/google">Sign In</a>     
+      </header>      
+    </div>    
+    );
 }
 
 export default App;

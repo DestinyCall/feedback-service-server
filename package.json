@@ -11,8 +11,7 @@
     "start": "node feedback-service.js",
     "server": "nodemon feedback-service.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\"",
-    "webhook": "./sendgrid_webhook.sh",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",    
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
