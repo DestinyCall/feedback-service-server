@@ -11,7 +11,7 @@
     "start": "node feedback-service.js",
     "server": "nodemon feedback-service.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",    
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -35,6 +35,11 @@
   "devDependencies": {
     "concurrently": "^6.1.0",
     "dotenv": "^9.0.2",
-    "nodemon": "^2.0.7"
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "nodemon": "^2.0.7",
+    "prettier": "2.3.0",
+    "typescript": "^4.2.4"
   }
 }
