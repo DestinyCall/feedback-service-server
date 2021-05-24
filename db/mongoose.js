@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -14,8 +14,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 const connection = mongoose.connection;
 
-connection.once("open", () => {
-  console.log("MongoDB connection estblished succesfully");
+connection.once('open', () => {
+  console.log('MongoDB connection estblished succesfully');
 });
 
 module.exports = { mongoose };

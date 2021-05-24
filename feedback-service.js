@@ -1,19 +1,19 @@
-require("./config/config")
-require("./db/mongoose")
+require('./config/config');
+require('./db/mongoose');
 
-const express = require("express")
-const cors = require("cors")
-const morgan = require("morgan")
-const passport = require('passport')
-const cookieSession = require('cookie-session')
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const passport = require('passport');
+const cookieSession = require('cookie-session');
 
-const Logger = require("./service/logger/winston")
+const Logger = require('./service/logger/winston');
 
-const Log = new Logger("app")
+const Log = new Logger('app');
 
-const app = express()
+const app = express();
 
-app.use(morgan("combined", { stream: Log.stream }));
+app.use(morgan('combined', { stream: Log.stream }));
 
 // Use cors
 app.use(cors());
@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [process.env.SESSION_SECRET]
+    keys: [process.env.SESSION_SECRET],
   })
 );
 
@@ -34,16 +34,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', (req, res) => {
-  res.send('<h1>Home</h1>')
+  res.send('<h1>Home</h1>');
 });
 
-//Import Route
-const api = require("./routes");
-app.use('/',api);
+// Import Route
+const api = require('./routes');
 
-app.use(function (err, req, res, next) {
+app.use('/', api);
+
+app.use((err, req, res, next) => {
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 });
 
 // Capture 500 errors
@@ -62,7 +63,7 @@ app.use((req, res, next) => {
   );
 });
 
-const PORT = process.env.PORT;
+const { PORT } = process.env;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
