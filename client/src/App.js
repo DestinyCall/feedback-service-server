@@ -1,21 +1,33 @@
+import { render } from '@testing-library/react';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import * as actions from './actions';
 
-const Header = () => <h2>Header</h2>;
+import Header from './components/header/Header';
+import Landing from './components/landing/Landing';
+
 const Dashboard = () => <h2>Dashboard</h2>;
-const Landing = () => <h2>Landing</h2>;
+const SurveyNew = () => <h2>Survey New</h2>;
 
-const App = () => {
-  return (
-    <div>
-      <Router>
-        <div>
-          <Route exact path="/" component={Landing} />
-          <Route path="/surveys" component={Dashboard} />
-        </div>
-      </Router>
-    </div>
-  );
-};
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+  render() {
+    return (
+      <div className="container">
+        <Router>
+          <div>
+            <Header />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/surveys" component={Dashboard} />
+            <Route path="/surveys/new" component={SurveyNew} />
+          </div>
+        </Router>
+      </div>
+    );
+  }
+}
 
-export default App;
+export default connect(null, actions)(App);
