@@ -6,10 +6,11 @@ const cors = require('cors');
 const morgan = require('morgan');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
-
+const path = require('path');
 const Logger = require('./service/logger/winston');
 
 const Log = new Logger('app');
+const distPath = path.join(__dirname, '../public');
 
 const app = express();
 
@@ -63,6 +64,17 @@ app.use((req, res, next) => {
   );
 });
 
+if (process.env.NODE_ENV === 'production') {
+  // use this middleware at the end only, before client routes.
+  // Do not use above API routes.
+  app.use(express.static(distPath));
+
+  // this needs to be after express static method.
+  app.get('*', function (req, res) {
+    const filePath = path.resolve(__dirname, '../public', 'index.html');
+    res.sendFile(filePath);
+  });
+}
 const { PORT } = process.env;
 
 app.listen(PORT, () => {

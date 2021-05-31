@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
 
-// Define our user schema
 const UserSchema = new mongoose.Schema({
   googleId: {
     type: String,
@@ -27,8 +26,6 @@ UserSchema.methods.toJSON = function () {
   return _.omit(userObject, ['__v']);
 };
 
-// Create users model
 let User = mongoose.model('users', UserSchema);
 
-// Export the Mongoose model
 module.exports = User;

@@ -6,8 +6,7 @@ import * as actions from './actions';
 
 import Header from './components/header/Header';
 import Landing from './components/landing/Landing';
-
-const Dashboard = () => <h2>Dashboard</h2>;
+import Dashboard from './components/dashboard/Dashboard';
 const SurveyNew = () => <h2>Survey New</h2>;
 
 class App extends Component {
